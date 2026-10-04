@@ -21,7 +21,7 @@ Claude のプラン利用状況と GitHub の利用量を、Stream Deck のキ�
 
 ## インストール
 
-1. [Releases(usage-deck)](https://github.com/noxitro/stream-deck-toolkit/releases?q=usage-deck&expanded=true) から最新の `com.noxitro.usagedeck.streamDeckPlugin` をダウンロードします。
+1. [Releases(usage-deck)](https://github.com/noxitro/streamdeck-toolkit/releases?q=usage-deck&expanded=true) から最新の `com.noxitro.usagedeck.streamDeckPlugin` をダウンロードします。
 2. ダブルクリックすると Stream Deck アプリが開き、インストールされます。
 3. アクション一覧の「Usage Deck」から「Claude 利用状況」「GitHub 利用状況」をキーにドラッグします。
 

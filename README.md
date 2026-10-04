@@ -1,4 +1,4 @@
-# Stream Deck Toolkit
+# streamdeck-toolkit
 
 noxitro が作っている [Elgato Stream Deck](https://www.elgato.com/stream-deck) 用プラグインの置き場です。個人用・職場用を問わず、必要になったものをここに追加していきます。
 
@@ -6,7 +6,7 @@ noxitro が作っている [Elgato Stream Deck](https://www.elgato.com/stream-de
 
 | プラグイン | できること | ダウンロード | 説明書 |
 | --- | --- | --- | --- |
-| Usage Deck | Claude のプラン利用状況(5時間枠・週間・モデル別・追加利用)と、GitHub の Copilot / Actions の利用量をキーに表示 | [Releases](https://github.com/noxitro/stream-deck-toolkit/releases?q=usage-deck&expanded=true) | [README](plugins/usage-deck/README.md) |
+| Usage Deck | Claude のプラン利用状況(5時間枠・週間・モデル別・追加利用)と、GitHub の Copilot / Actions の利用量をキーに表示 | [Releases](https://github.com/noxitro/streamdeck-toolkit/releases?q=usage-deck&expanded=true) | [README](plugins/usage-deck/README.md) |
 
 ## インストールのしかた(共通)
 
