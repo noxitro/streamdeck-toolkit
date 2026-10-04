@@ -1,6 +1,6 @@
 # streamdeck-toolkit
 
-noxitro が作っている [Elgato Stream Deck](https://www.elgato.com/stream-deck) 用プラグインの置き場です。個人用・職場用を問わず、必要になったものをここに追加していきます。
+[Elgato Stream Deck](https://www.elgato.com/stream-deck) 用プラグインの置き場。
 
 ## プラグイン一覧
 
