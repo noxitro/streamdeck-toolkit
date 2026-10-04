@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<title>Claude Usage Settings</title>
+	<meta charset="utf-8" />
+	<script src="vendor/sdpi-components.js"></script>
+	<script src="i18n.js"></script>
+</head>
+<body>
+	<sdpi-item label="__MSG_metric__">
+		<sdpi-select setting="metric" default="five_hour">
+			<option value="five_hour">__MSG_claude_five_hour__</option>
+			<option value="seven_day">__MSG_claude_seven_day__</option>
+			<option value="seven_day_model">__MSG_claude_seven_day_model__</option>
+			<option value="extra_usage">__MSG_claude_extra_usage__</option>
+		</sdpi-select>
+	</sdpi-item>
+	<sdpi-item label="__MSG_model__">
+		<sdpi-select setting="model" datasource="models" hot-reload placeholder="__MSG_modelPlaceholder__" loading="__MSG_loading__"></sdpi-select>
+	</sdpi-item>
+	<sdpi-item label="__MSG_warnAt__">
+		<sdpi-range setting="warnAt" min="0" max="100" step="5" default="70" showlabels></sdpi-range>
+	</sdpi-item>
+	<sdpi-item label="__MSG_critAt__">
+		<sdpi-range setting="critAt" min="0" max="100" step="5" default="90" showlabels></sdpi-range>
+	</sdpi-item>
+	<sdpi-item label="__MSG_pace__">
+		<sdpi-checkbox setting="pace" default="true" label="__MSG_paceLabel__"></sdpi-checkbox>
+	</sdpi-item>
+
+	<hr />
+	<sdpi-item label="__MSG_claudePath__">
+		<sdpi-textfield setting="claudePath" global placeholder="__MSG_claudePathPlaceholder__"></sdpi-textfield>
+	</sdpi-item>
+	<details class="sdpi-item">
+		<summary>__MSG_howTo__</summary>
+		<div data-lang="en">
+			<p>Shared by all Claude keys.</p>
+			<p><b>Claude Code CLI:</b> the plugin asks the installed <code>claude</code> CLI for your usage, the same numbers as <code>/usage</code>. It never reads or stores a token; the CLI keeps its own login fresh. Sign in once with <code>claude</code> → <code>/login</code>. The key shows "Run /login" when the CLI is signed out, and "Unavailable" when it is signed in but couldn't get usage right now (offline, rate limited).</p>
+			<p><b>claude path:</b> leave empty; it's found on PATH, in <code>~\.local\bin</code> and in npm's global folder. Only if the key shows "No claude CLI", enter the full path of <code>claude.exe</code> (or the folder, or npm's <code>claude.cmd</code>, which is mapped to the real exe). For npm installs it is <code>&lt;npm prefix -g&gt;\node_modules\@anthropic-ai\claude-code\bin\claude.exe</code>. <code>%VARS%</code> and <code>~</code> are expanded; network paths are not accepted.</p>
+			<p>Press to refresh (at most once a minute), hold to open claude.ai usage. A yellow dot means the last refresh failed and older data is shown.</p>
+		</div>
+		<div data-lang="ja">
+			<p>すべての Claude キーで共通の設定です。</p>
+			<p><b>Claude Code CLI:</b> インストール済みの <code>claude</code> CLI に使用量を問い合わせます(<code>/usage</code> と同じ値)。プラグインはトークンを読まず、保存もしません。ログインの更新は CLI が自分で行います。最初に一度だけ <code>claude</code> → <code>/login</code> でログインしてください。CLI がログアウト状態のときはキーに「要ログイン」、ログイン済みでも今は取得できない(オフライン・レート制限など)ときは「取得不可」と表示されます。</p>
+			<p><b>claude のパス:</b> 通常は空欄のままで構いません(PATH、<code>~\.local\bin</code>、npm のグローバルフォルダから自動で探します)。キーに「CLI未検出」と出るときだけ、<code>claude.exe</code> のフルパスを入れてください(フォルダや npm の <code>claude.cmd</code> を指定しても実体の exe に読み替えます)。npm で入れた場合の場所は <code>&lt;npm prefix -g の出力&gt;\node_modules\@anthropic-ai\claude-code\bin\claude.exe</code> です。<code>%変数%</code> と <code>~</code> は展開されます。ネットワーク上のパスは使えません。</p>
+			<p>押すと更新(最短1分間隔)、長押しで claude.ai の利用状況ページを開きます。右上の黄色い点は、最後の更新に失敗して古いデータを表示していることを示します。</p>
+		</div>
+	</details>
+</body>
+</html>

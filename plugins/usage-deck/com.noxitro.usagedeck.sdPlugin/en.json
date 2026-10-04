@@ -1,0 +1,58 @@
+{
+	"Name": "Usage Deck",
+	"Description": "Claude plan usage and GitHub Copilot / Actions usage on your keys.",
+	"Category": "Usage Deck",
+	"com.noxitro.usagedeck.claude": {
+		"Name": "Claude Usage",
+		"Tooltip": "Claude plan usage (5h / weekly / model / extra). Press: refresh. Hold: open the usage page."
+	},
+	"com.noxitro.usagedeck.github": {
+		"Name": "GitHub Usage",
+		"Tooltip": "This month's GitHub Copilot AI units or Actions minutes. Press: refresh. Hold: open billing usage."
+	},
+	"Localization": {
+		"label": {
+			"five_hour": "Claude 5h",
+			"seven_day": "Claude wk",
+			"extra_usage": "Extra",
+			"copilot": "Copilot",
+			"actions": {
+				"all": "Actions",
+				"linux": "Actions Lin",
+				"windows": "Actions Win",
+				"macos": "Actions Mac"
+			},
+			"seven_day_model": "{model} wk"
+		},
+		"value": {
+			"off": "Off",
+			"na": "n/a",
+			"notFound": "not found",
+			"loading": "Loading…"
+		},
+		"sub": {
+			"budget": "{pct}% of {budget}"
+		},
+		"dur": {
+			"now": "now",
+			"dh": "{d}d {h}h",
+			"hm": "{h}h {m}m",
+			"m": "{m}m"
+		},
+		"err": {
+			"generic": "Error",
+			"offline": "Offline",
+			"auth": "Auth error",
+			"rateLimit": "Rate limit",
+			"http": "HTTP {status}",
+			"noToken": "No token",
+			"noAccess": "No access",
+			"cliMissing": "No claude CLI",
+			"cliLogin": "Run /login",
+			"cliTimeout": "CLI timeout",
+			"cliFailed": "CLI error",
+			"cliUnavailable": "Unavailable",
+			"badOrg": "Bad org name"
+		}
+	}
+}

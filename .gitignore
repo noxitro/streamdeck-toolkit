@@ -1,0 +1,11 @@
+# Node.js
+node_modules/
+
+# Stream Deck build output and runtime logs (any plugin)
+**/*.sdPlugin/bin/
+**/*.sdPlugin/logs/
+**/dist/
+**/e2e/out/
+
+# Local agent instructions (point at private resources)
+CLAUDE.md

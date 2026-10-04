@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<title>GitHub Usage Settings</title>
+	<meta charset="utf-8" />
+	<script src="vendor/sdpi-components.js"></script>
+	<script src="i18n.js"></script>
+</head>
+<body>
+	<sdpi-item label="__MSG_metric__">
+		<sdpi-select setting="metric" default="copilot">
+			<option value="copilot">__MSG_gh_copilot__</option>
+			<option value="actions">__MSG_gh_actions__</option>
+		</sdpi-select>
+	</sdpi-item>
+	<sdpi-item label="__MSG_runner__">
+		<sdpi-select setting="runner" default="all">
+			<option value="all">__MSG_runner_all__</option>
+			<option value="linux">Linux</option>
+			<option value="windows">Windows</option>
+			<option value="macos">macOS</option>
+		</sdpi-select>
+	</sdpi-item>
+	<sdpi-item label="__MSG_budget__">
+		<sdpi-textfield setting="budget" pattern="\d*" placeholder="__MSG_budgetPlaceholder__"></sdpi-textfield>
+	</sdpi-item>
+	<sdpi-item label="__MSG_amount__">
+		<sdpi-select setting="money" default="gross">
+			<option value="gross">__MSG_amount_gross__</option>
+			<option value="net">__MSG_amount_net__</option>
+		</sdpi-select>
+	</sdpi-item>
+	<sdpi-item label="__MSG_warnAt__">
+		<sdpi-range setting="warnAt" min="0" max="100" step="5" default="70" showlabels></sdpi-range>
+	</sdpi-item>
+	<sdpi-item label="__MSG_critAt__">
+		<sdpi-range setting="critAt" min="0" max="100" step="5" default="90" showlabels></sdpi-range>
+	</sdpi-item>
+
+	<hr />
+	<sdpi-item label="__MSG_token__">
+		<sdpi-password setting="githubToken" global placeholder="__MSG_tokenPlaceholder__"></sdpi-password>
+	</sdpi-item>
+	<sdpi-item label="__MSG_githubOrg__">
+		<sdpi-textfield setting="githubOrg" global placeholder="__MSG_githubOrgPlaceholder__"></sdpi-textfield>
+	</sdpi-item>
+	<details class="sdpi-item">
+		<summary>__MSG_howTo__</summary>
+		<div data-lang="en">
+			<p>Shared by all GitHub keys. Leave blank to use <code>gh auth token</code> (run <code>gh auth login</code> once). A fine-grained token needs the <b>Plan: read</b> user permission.</p>
+			<p><b>Work accounts:</b> if your Copilot license is managed and billed by an organization or enterprise, that usage is not in your personal billing data, so the key shows little or nothing. An organization administrator can enter the organization name to see the organization's usage instead (other members get "No access").</p>
+			<p>Shows this month's usage (UTC). With a budget, the bar shows usage against it and the marker shows how far through the month you are. Without one, the amount in dollars is shown.</p>
+			<p>Press to refresh, hold to open GitHub billing usage.</p>
+		</div>
+		<div data-lang="ja">
+			<p>すべての GitHub キーで共通の設定です。空欄なら <code>gh auth token</code> を使います(事前に <code>gh auth login</code> が必要)。Fine-grained トークンを使う場合は、ユーザー権限の <b>Plan: read</b> が必要です。</p>
+			<p><b>職場のアカウント:</b> Copilot のライセンスが組織や Enterprise で管理・課金されている場合、その利用量は個人の請求データに含まれないため、キーにはほとんど(または何も)表示されません。組織の管理者は「組織名」を入れると、組織全体の利用量を表示できます(管理者以外は「権限なし」になります)。</p>
+			<p>今月(UTC)の利用量を表示します。上限を入れるとバーで消費率を表示し、目盛りは月の経過を示します。未入力のときはドル金額を表示します。</p>
+			<p>押すと更新、長押しで GitHub の請求ページを開きます。</p>
+		</div>
+	</details>
+</body>
+</html>

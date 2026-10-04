@@ -1,0 +1,50 @@
+# For every plugin under plugins/: type check, build, manifest validation and its E2E suite.
+# The suites use stand-ins for external CLIs and APIs, so they need no accounts or secrets.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  plugins:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.list.outputs.list }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: list
+        run: echo "list=$(ls -d plugins/*/ | xargs -n1 basename | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+
+  check:
+    needs: plugins
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        plugin: ${{ fromJson(needs.plugins.outputs.list) }}
+    defaults:
+      run:
+        working-directory: plugins/${{ matrix.plugin }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: plugins/${{ matrix.plugin }}/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run e2e --if-present
+      - name: Keep images rendered by the E2E run
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-${{ matrix.plugin }}
+          path: plugins/${{ matrix.plugin }}/e2e/out/
+          if-no-files-found: ignore

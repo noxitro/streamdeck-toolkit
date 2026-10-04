@@ -1,0 +1,63 @@
+{
+	"Name": "Usage Deck",
+	"Version": "0.1.0.0",
+	"Author": "noxitro",
+	"Actions": [
+		{
+			"Name": "Claude Usage",
+			"UUID": "com.noxitro.usagedeck.claude",
+			"Icon": "imgs/actions/claude",
+			"Tooltip": "Claude plan usage (5h / weekly / model / extra). Press: refresh. Hold: open the usage page.",
+			"PropertyInspectorPath": "ui/claude.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/claude",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "GitHub Usage",
+			"UUID": "com.noxitro.usagedeck.github",
+			"Icon": "imgs/actions/github",
+			"Tooltip": "This month's GitHub Copilot AI units or Actions minutes. Press: refresh. Hold: open billing usage.",
+			"PropertyInspectorPath": "ui/github.html",
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/github",
+					"ShowTitle": false
+				}
+			]
+		}
+	],
+	"Category": "Usage Deck",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"CodePath": "bin/plugin.js",
+	"Description": "Claude plan usage and GitHub Copilot / Actions usage on your keys.",
+	"Icon": "imgs/plugin/marketplace",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "7.1"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "24",
+		"Debug": "enabled"
+	},
+	"UUID": "com.noxitro.usagedeck"
+}

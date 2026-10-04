@@ -1,0 +1,58 @@
+{
+	"Name": "Usage Deck",
+	"Description": "Claude のプラン利用状況と、GitHub Copilot / Actions の利用量をキーに表示します。",
+	"Category": "Usage Deck",
+	"com.noxitro.usagedeck.claude": {
+		"Name": "Claude 利用状況",
+		"Tooltip": "Claude のプラン利用状況(5時間枠・週間・モデル別・追加利用)。押すと更新、長押しで利用状況ページを開きます。"
+	},
+	"com.noxitro.usagedeck.github": {
+		"Name": "GitHub 利用状況",
+		"Tooltip": "今月の GitHub Copilot AI units または Actions 使用時間。押すと更新、長押しで請求ページを開きます。"
+	},
+	"Localization": {
+		"label": {
+			"five_hour": "Claude 5時間",
+			"seven_day": "Claude 週間",
+			"extra_usage": "追加利用",
+			"copilot": "Copilot",
+			"actions": {
+				"all": "Actions",
+				"linux": "Actions Linux",
+				"windows": "Actions Win",
+				"macos": "Actions Mac"
+			},
+			"seven_day_model": "{model} 週間"
+		},
+		"value": {
+			"off": "オフ",
+			"na": "対象外",
+			"notFound": "未検出",
+			"loading": "読み込み中…"
+		},
+		"sub": {
+			"budget": "上限{budget}の{pct}%"
+		},
+		"dur": {
+			"now": "まもなく",
+			"dh": "{d}日{h}時間",
+			"hm": "{h}時間{m}分",
+			"m": "{m}分"
+		},
+		"err": {
+			"generic": "エラー",
+			"offline": "オフライン",
+			"auth": "認証エラー",
+			"rateLimit": "制限中",
+			"http": "HTTP {status}",
+			"noToken": "トークンなし",
+			"noAccess": "権限なし",
+			"cliMissing": "CLI未検出",
+			"cliLogin": "要ログイン",
+			"cliTimeout": "CLI応答なし",
+			"cliFailed": "CLIエラー",
+			"cliUnavailable": "取得不可",
+			"badOrg": "組織名不正"
+		}
+	}
+}

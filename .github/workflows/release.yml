@@ -1,0 +1,58 @@
+# Pushing a tag <plugin>-vX.Y.Z (made by `npm version patch|minor|major` inside plugins/<plugin>) builds,
+# tests and packages that plugin, then publishes a GitHub Release with its .streamDeckPlugin attached.
+name: Release
+
+on:
+  push:
+    tags: ["*-v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Resolve plugin from tag
+        id: plugin
+        run: |
+          tag="$GITHUB_REF_NAME"
+          plugin="${tag%-v*}"
+          version="${tag##*-v}"
+          dir="plugins/$plugin"
+          if [ ! -f "$dir/package.json" ]; then
+            echo "::error::tag $tag names no plugin ($dir/package.json not found)"; exit 1
+          fi
+          pkg="$(node -p "require('./$dir/package.json').version")"
+          if [ "$pkg" != "$version" ]; then
+            echo "::error::tag $tag does not match $dir/package.json version $pkg"; exit 1
+          fi
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+          echo "name=$plugin" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: ${{ steps.plugin.outputs.dir }}/package-lock.json
+
+      - working-directory: ${{ steps.plugin.outputs.dir }}
+        run: |
+          npm ci
+          npm run check
+          npm run e2e --if-present
+          npm run pack
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DIR: ${{ steps.plugin.outputs.dir }}
+          NAME: ${{ steps.plugin.outputs.name }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$DIR"/dist/*.streamDeckPlugin \
+            --title "$NAME ${GITHUB_REF_NAME##*-}" \
+            --notes "下の .streamDeckPlugin をダウンロードしてダブルクリックするとインストールされます。設定方法は $DIR/README.md を見てください。" \
+            --latest=false
