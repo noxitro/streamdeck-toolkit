@@ -9,16 +9,18 @@ import readline from "node:readline";
 const mode = process.env.FAKE_CLAUDE_MODE ?? "ok";
 const variant = process.env.FAKE_CLAUDE_VARIANT;
 const args = process.argv.slice(2);
+const hasEnv = (name) => Object.keys(process.env).some((k) => k.toUpperCase() === name);
 if (process.env.FAKE_CLAUDE_LOG) {
 	appendFileSync(
 		process.env.FAKE_CLAUDE_LOG,
 		JSON.stringify({
 			args,
 			cwd: process.cwd(),
-			// Windows env lookups are case-insensitive, so these also catch e.g. "anthropic_auth_token".
-			hasApiKey: "ANTHROPIC_API_KEY" in process.env,
-			hasAuthToken: "ANTHROPIC_AUTH_TOKEN" in process.env,
-			hasOauthToken: "CLAUDE_CODE_OAUTH_TOKEN" in process.env,
+			// Compared case-insensitively on every OS, so a lowercase "anthropic_auth_token" counts as present
+			// on Linux/macOS too (there `in process.env` is case-sensitive and would miss it).
+			hasApiKey: hasEnv("ANTHROPIC_API_KEY"),
+			hasAuthToken: hasEnv("ANTHROPIC_AUTH_TOKEN"),
+			hasOauthToken: hasEnv("CLAUDE_CODE_OAUTH_TOKEN"),
 			configDir: process.env.CLAUDE_CONFIG_DIR ?? null
 		}) + "\n"
 	);

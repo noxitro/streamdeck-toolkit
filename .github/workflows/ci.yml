@@ -22,12 +22,14 @@ jobs:
 
   check:
     needs: plugins
-    runs-on: ubuntu-latest
+    # All three OSes the plugins declare; standard runners are free for public repositories.
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
         plugin: ${{ fromJson(needs.plugins.outputs.list) }}
+        os: [ubuntu-latest, windows-latest, macos-latest]
     defaults:
       run:
         working-directory: plugins/${{ matrix.plugin }}
@@ -45,6 +47,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: e2e-${{ matrix.plugin }}
+          name: e2e-${{ matrix.plugin }}-${{ matrix.os }}
           path: plugins/${{ matrix.plugin }}/e2e/out/
           if-no-files-found: ignore
