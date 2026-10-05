@@ -37,4 +37,4 @@ git push --follow-tags
 2. `npm run check`、`npm run e2e`、`npm run pack`
 3. GitHub Release を作り、`.streamDeckPlugin` を添付する
 
-`main` への push と pull request では、`.github/workflows/ci.yml` が全プラグインの `check` と `e2e` を実行します。どちらも Linux ランナーで動きます(Windows ランナーより Actions の無料枠の消費が少ないため)。
+`main` への push と pull request では、`.github/workflows/ci.yml` が全プラグインの `check` と `e2e` を Linux・Windows・macOS の3つで実行します(公開リポジトリでは標準ランナーが無料のため)。Release は Linux だけで作ります(パッケージ作成は OS に依存しないため)。
