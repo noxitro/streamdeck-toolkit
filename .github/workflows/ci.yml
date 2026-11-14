@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - id: list
-        run: echo "list=$(ls -d plugins/*/ | xargs -n1 basename | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+        run: echo "list=$(find plugins -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
 
   check:
     needs: plugins
